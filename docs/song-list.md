@@ -2,8 +2,8 @@
 | 字段 | 类型 | 说明 | 
 |:----:|:---:|:----:|
 | id | int | 歌单id |
-| name | string | 歌单名称 |
-| author | string | 歌单作者 |
+| name | string | 歌单名称 |
+| author | string | 歌单作者 |
 | count | number | 听者数量 |
 | favorite | number | 收藏数 |
 

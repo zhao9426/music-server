@@ -1,0 +1,58 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font: 14px "微软雅黑", Arial;
+    background: #000;
+    color: #FFF;
+    text-align: center;
+}
+
+header,
+.left,
+.right {
+    position: absolute;
+}
+
+header {
+    left: 10px;
+    top: 10px;
+    right: 10px;
+}
+
+header h1 {
+    font-size: 40px;
+    height: 60px;
+    line-height: 60px;
+    border: 1px solid #fff;
+}
+
+.left {
+    box-sizing: border-box;
+    width: 200px;
+    left: 10px;
+    bottom: 10px;
+    top: 170px;
+    border: 1px solid #fff;
+}
+
+.left ul {
+    overflow: auto;
+    list-style: none;
+    text-align: left;
+}
+
+
+.left ul li.selected {
+    color: green;
+}
+
+.right {
+    top: 170px;
+    right: 10px;
+    bottom: 10px;
+    left: 220px;
+    border: 1px solid #fff;
+}
