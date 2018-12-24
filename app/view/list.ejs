@@ -10,6 +10,15 @@
 <body>
     <header>
         <h1><%= title%></h1>
+        <div class="options">
+         <p class="volume">Volume <input type="range" id="volume" min="0" max="100" value="60" ></p>
+        <ul class="type" id="type">
+            <li data-type="dot">Dot</li>
+            <li data-type="column" class="selected">Column</li>
+        </ul>
+        </div>
+        
+       
     </header>
     <div class="left">
         <ul id="list">
@@ -18,8 +27,9 @@
             <% }); %>
         </ul>
     </div>  
-    <div class="right">
+    <div class="right" id="box">
     </div> 
+    <script src="/public/js/MusicVisualizer.js"></script>
     <script src="/public/js/load.js" ></script>
 </body>
 </html>

@@ -22,6 +22,29 @@ header {
     right: 10px;
 }
 
+.options {
+    display: inline-block;
+}
+
+.volume {
+    display: inline;
+} 
+
+ul#type {
+    list-style: none;
+    display: inline-block;
+}
+
+ul#type li {
+    display: inline;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+ul#type li.selected {
+    background-color: greenyellow;
+}
+
 header h1 {
     font-size: 40px;
     height: 60px;
@@ -44,9 +67,14 @@ header h1 {
     text-align: left;
 }
 
-
 .left ul li.selected {
     color: green;
+    cursor: pointer;
+}
+
+li,
+li:hover {
+    cursor: pointer;
 }
 
 .right {
