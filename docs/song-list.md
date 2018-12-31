@@ -2,10 +2,15 @@
 | 字段 | 类型 | 说明 | 
 |:----:|:---:|:----:|
 | id | int | 歌单id |
+| poster | string | 歌单封面 |
 | name | string | 歌单名称 |
+| songs | array | 曲目id列表 |
 | author | string | 歌单作者 |
-| count | number | 听者数量 |
+| count | number | 播放数量 |
 | favorite | number | 收藏数 |
+| description | string | 简介 |
+| updated_At | Date | 更新时间 |
+| created_At | Date | 创建时间 |
 
 # 曲目Schema
 | 字段 | 类型 | 说明 |

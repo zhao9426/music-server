@@ -28,7 +28,31 @@ header {
 
 .volume {
     display: inline;
-} 
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    height: 8px;
+    background: #999;
+    border-radius: 10px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb,
+input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    background: #fff;
+    border-radius: 100%;
+}
+
+input[type="range"]::-moz-range-track {
+    height: 8px;
+    background: #999;
+    border-radius: 10px;
+    border: none;
+}
 
 ul#type {
     list-style: none;
@@ -49,16 +73,16 @@ header h1 {
     font-size: 40px;
     height: 60px;
     line-height: 60px;
-    border: 1px solid #fff;
+    /* border: 1px solid #fff; */
 }
 
 .left {
     box-sizing: border-box;
-    width: 200px;
+    width: 15%;
     left: 10px;
     bottom: 10px;
     top: 170px;
-    border: 1px solid #fff;
+    /* border: 1px solid #fff; */
 }
 
 .left ul {
@@ -68,8 +92,13 @@ header h1 {
 }
 
 .left ul li.selected {
+    height: 30px;
+    line-height: 30px;
     color: green;
     cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 li,
@@ -79,8 +108,30 @@ li:hover {
 
 .right {
     top: 170px;
-    right: 10px;
+    right: 10px; 
     bottom: 10px;
-    left: 220px;
-    border: 1px solid #fff;
+    left: calc( 15% + 20px);
+    /* border: 1px solid #fff; */
+}
+
+@media screen and ( max-width: 800px ), screen and ( max-height: 500px){
+    body{
+        font-size: 12px;
+    }
+    header {
+        height: 80px;
+    }
+    header h1 {
+        font-size: 24px;
+        height: 34px;
+        line-height: 34px;
+    }
+    header .type li {
+        height: 16px;
+        line-height: 16px;
+        width: 50px;
+    }
+    .left, .right {
+        top: 100px;
+    }
 }

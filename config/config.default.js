@@ -34,7 +34,7 @@ module.exports = appInfo => {
   return config;
 };
 
-exports.mysql = {
+/* exports.mysql = {
   // 单数据库信息配置
   client: {
     // host
@@ -52,6 +52,6 @@ exports.mysql = {
   app: true,
   // 是否加载到 agent 上，默认关闭
   agent: true,
-};
+}; */
 
 

@@ -18,16 +18,13 @@ MusicVisualizer.prototype.load = function(url, fn){
     this.xhr.open('GET', url);
     this.xhr.responseType = "arraybuffer";
     const self = this;
-    console.log(typeof fn, "fn")
     this.xhr.onload = function(){
-        console.log(typeof fn, "fn2", fn)
         fn(self.xhr.response)
     }
     this.xhr.send();
 }
 
 MusicVisualizer.prototype.decode = function(arraybuffer, fn){
-    console.log(arraybuffer, "hah")
     this.ac.decodeAudioData(arraybuffer, function(buffer){
         fn(buffer);
     }, function(err){
@@ -40,16 +37,14 @@ MusicVisualizer.prototype.play = function(url){
     this.source && this.source.stop();
     var self = this;
     this.load(url, function(arraybuffer){
-        console.log(arraybuffer, "af")
         if(n !== self.count) return;
         arraybuffer && self.decode(arraybuffer, function(buffer){
             if (n !== self.count) return;
-            console.log(buffer, "fck")
             let bs = self.ac.createBufferSource();
             bs.buffer = buffer;
-           // bs.start();
+            bs.connect(self.analyser);
             self.source = bs;
-            sel.source.start();
+            self.source.start();
         })
     })
 }
@@ -58,20 +53,21 @@ MusicVisualizer.prototype.stop = function(){
     this.source.stop();
 }
 
+MusicVisualizer.prototype.addInit = function(fun){
+    this.initCallBack = fun;
+}
+
 MusicVisualizer.prototype.changeVolume = function(percent){
     this.gainNode.gain.value = percent * percent;
 }
 
 MusicVisualizer.prototype.visualize = function(){
     var arr = new Uint8Array(this.analyser.frequencyBinCount);
-   // var arr = new Uint8Array(analyser.frequencyBinCount);
     this.analyser.getByteFrequencyData(arr);
     const self = this;
-   /// console.log(arr, "ksks")
     function v(){
         self.analyser.getByteFrequencyData(arr);
         self.visualizer(arr);
-        console.log(arr, "reqa")
         requestAnimationFrame(v);
     }
     requestAnimationFrame(v);
