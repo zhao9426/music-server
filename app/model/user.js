@@ -1,15 +1,23 @@
 'use strict';
 
 module.exports = app => {
-    const { STRING, INTEGER, DATE } = app.Sequelize;
+  const { STRING, INTEGER, DATE } = app.Sequelize;
 
-    const User = app.model.define('user', {
-        id: { type: INTEGER, primaryKey: true, autoIncrement: true },
-        name: STRING(30),
-        age: INTEGER,
-        created_at: DATE,
-        updated_at: DATE,
-    });
+  const User = app.model.define('User', {
+    id: { type: INTEGER, primaryKey: true, autoIncrement: true },
+    name: STRING(30),
+    pwd: STRING(20),
+    created_at: DATE,
+    updated_at: DATE,
+  });
 
-    return User;
+  User.findByNameAndPwd = async (name, pwd) => {
+      return await User.findOne({
+          where: {
+              name,
+              pwd
+          }
+      })
+  }
+  return User;
 };

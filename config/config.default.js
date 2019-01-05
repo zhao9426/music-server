@@ -2,12 +2,12 @@
 
 module.exports = appInfo => {
   const config = exports = {
-    buffer: true
+    buffer: true,
   };
   config.sequelize = {
     dialect: 'mysql',
     host: '47.100.53.48',
-    password: "794838927",
+    password: '794838927',
     port: 8888,
     database: 'test',
   };
@@ -20,38 +20,17 @@ module.exports = appInfo => {
     },
   },
 
-  // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1543889310000_3741';
 
-  // add your config here
-  config.middleware = [];
+  config.middleware = [ 'errorHandler' ];
+  config.errorHandler = {
+    match: '/api',
+  };
   config.view = {
     mapping: {
-      '.ejs': 'ejs'
-    }
-  }
+      '.ejs': 'ejs',
+    },
+  };
 
   return config;
 };
-
-/* exports.mysql = {
-  // 单数据库信息配置
-  client: {
-    // host
-    host: '47.100.53.48',
-    // 端口号
-    port: '8888',
-    // 用户名
-    user: 'root',
-    // 密码
-    password: '794838927',
-    // 数据库名
-    database: 'music',
-  },
-  // 是否加载到 app 上，默认开启
-  app: true,
-  // 是否加载到 agent 上，默认关闭
-  agent: true,
-}; */
-
-
