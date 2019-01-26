@@ -17,6 +17,12 @@ module.exports = app => {
               name,
               pwd
           }
+      }).then((user) => {  
+          if(user){
+              return { name: user.dataValues.name };
+          } else {
+              throw new Error("用户名或密码错误！");
+          }
       })
   }
   return User;

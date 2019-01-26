@@ -16,9 +16,12 @@
     "autod": "autod"
   },
   "dependencies": {
+    "ali-oss": "^6.0.2",
     "egg": "^2.2.1",
+    "egg-cors": "^2.1.2",
     "egg-mysql": "^3.0.0",
     "egg-scripts": "^2.5.0",
+    "egg-security": "^2.4.2",
     "egg-sequelize": "^4.2.0",
     "egg-validate": "^2.0.2",
     "egg-view": "^2.1.0",

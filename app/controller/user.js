@@ -18,16 +18,20 @@ class UserController extends Controller {
 
   async login() {
     const ctx = this.ctx;
+    try{
     const user = await ctx.model.User.findByNameAndPwd(ctx.request.body.name, ctx.request.body.pwd);
-    if(user){
+    if(user && user.name == ctx.request.body.name){
         ctx.status = 200;
-        ctx.body = user;
-    }else{
-        ctx.status = 404;
-        ctx.body = { 
-            login: false,
-            message: "用户名或密码错误！" 
-        };
+      ctx.body = { ...user, login: true }
+    } else {
+      throw new Error("用户名或密码错误！")
+    }
+  } catch(e){
+      ctx.status = 404;
+      ctx.body = {
+        login: false,
+        message: e.message
+      };
     }
   }
 
