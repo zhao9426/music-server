@@ -66,14 +66,19 @@ class UserController extends Controller {
   async destroy() {
     const ctx = this.ctx;
     const id = toInt(ctx.params.id);
+    console.log(id, ">>>>");
+    
     const user = await ctx.model.User.findById(id);
     if (!user) {
       ctx.status = 404;
       return;
     }
 
-    await user.destroy();
+    let result = await user.destroy();
+    console.log(result);
+    
     ctx.status = 200;
+    ctx.body = { success: true }
   }
 }
 

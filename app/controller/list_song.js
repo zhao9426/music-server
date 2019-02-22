@@ -30,8 +30,7 @@ class ListSongController extends Controller {
     ctx.status = 201;
     ctx.body = SongList;
   }
-
-
+  
 }
 
 module.exports = ListSongController;
