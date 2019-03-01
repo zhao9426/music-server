@@ -4,7 +4,6 @@ const Controller = require('egg').Controller;
 const toInt = require('../utils/toInt');
 
 const createRule = {
- // accesstoken: 'string',
   name: { type: 'string', required: true },
   pwd: { type: 'string', required: true },
 };
@@ -58,27 +57,32 @@ class UserController extends Controller {
       return;
     }
 
-    const { name, pwd } = ctx.request.body;
-    await user.update({ name, pwd });
+    const data = ctx.request.body;
+    const errors = this.app.validator.validate({name: "string", pwd: "password"}, data);
+    if(errors){
+      ctx.status = 400;
+      ctx.body = { success: false, data: null, message: errors}
+      return;
+    }
+    await user.update(data);
     ctx.body = user;
   }
 
   async destroy() {
     const ctx = this.ctx;
     const id = toInt(ctx.params.id);
-    console.log(id, ">>>>");
     
     const user = await ctx.model.User.findById(id);
     if (!user) {
       ctx.status = 404;
+      ctx.body = { success: false, data: null }
       return;
     }
 
     let result = await user.destroy();
-    console.log(result);
     
     ctx.status = 200;
-    ctx.body = { success: true }
+    ctx.body = { success: true, data: result }
   }
 }
 
