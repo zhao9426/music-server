@@ -111,7 +111,6 @@ function draw(arr) {
       o.x += o.dx;
       o.x = o.x > width ? 0 : o.x;
     }
-
   }
 }
 resize();
