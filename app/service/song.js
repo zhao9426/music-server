@@ -7,7 +7,7 @@ class SongService extends Service {
 
     async create(params) {
         const ctx = this.ctx;
-        const song = await ctx.model.Song.create({...params});
+        const song = await ctx.model.Song.create({...params});      
         return { song };
     }
 

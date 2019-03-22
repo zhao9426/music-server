@@ -7,7 +7,6 @@ const createRule = {
     name: { type: 'string', required: true },
     url: { type: 'string', required: true },
     singer: { type: 'string'},
-    time: 'number',
     album: 'string',
     description: 'string'
 };
@@ -31,7 +30,10 @@ class SongController extends Controller {
         ctx.validate(createRule, ctx.request.body);
         const song = await ctx.service.song.create(ctx.request.body);
         ctx.status = 201;
-        ctx.body = song;
+        ctx.body = {
+            success: true,
+            data: song
+        }
     }
 
     async update() {
@@ -43,8 +45,14 @@ class SongController extends Controller {
             return;
         }
         ctx.validate(createRule, ctx.request.body);
-        await ctx.service.song.update(ctx.request.body); 
-        ctx.body = song;
+        console.log(ctx.request.body);
+        
+        const nSong = await song.update(ctx.request.body); 
+        ctx.status = 200;
+        ctx.body = {
+            success: true,
+            data: nSong
+        }
     }
 
     async destroy() {
@@ -58,6 +66,10 @@ class SongController extends Controller {
 
         await song.destroy();
         ctx.status = 200;
+        ctx.body = {
+            success: true,
+            data: null
+        }
     }
 }
 
