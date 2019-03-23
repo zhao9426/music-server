@@ -11,5 +11,6 @@ module.exports = (app) => {
   router.resources('users', '/api/users', controller.user);
   router.resources('song-list', '/api/song-list', controller.listSong);
   router.resources('song', '/api/song', controller.song);
+  router.resources('singer', '/api/singer', controller.singer);
   router.get('/list', controller.listSong.list);
 };
