@@ -3,6 +3,7 @@ CREATE TABLE `SongList`(
   `name` varchar(30) DEFAULT NULL COMMENT '歌单名称',
   `author` varchar(20) DEFAULT NULL COMMENT '歌单作者',
   `count` int(12) DEFAULT 0  COMMENT '播放量',
+  `poster` VARCHAR(20) DEFAULT '' COMMENT '歌单封面图',
   `favorite` int(12) DEFAULT 0 COMMENT '歌单收藏量',
   `description` VARCHAR(100) DEFAULT '' COMMENT '歌单描述',
   `created_at` datetime DEFAULT NULL COMMENT 'created time',

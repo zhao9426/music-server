@@ -6,6 +6,7 @@ module.exports = app => {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     name: STRING(30),
     author: STRING(10),
+    poster: STRING(20),
     count: INTEGER,
     favorite: INTEGER,
     description: STRING(20),

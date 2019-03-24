@@ -26,8 +26,8 @@ class ListSongController extends Controller {
 
   async create() {
     const ctx = this.ctx;
-    const { name, author, description } = ctx.request.body;
-    const SongList = await ctx.model.SongList.create({ name, author, description });
+    const { name, author, poster, description } = ctx.request.body;
+    const SongList = await ctx.model.SongList.create({ name, author, poster, description });
     ctx.status = 201;
     ctx.body = { data: SongList, success: true };
   }
@@ -69,6 +69,7 @@ class ListSongController extends Controller {
     const song = await ctx.model.SongList.findByPk(id);
     if (!song) {
       ctx.status = 404;
+      ctx.body = { success: false, data: null}
       return;
     }
     const result = await song.destroy();
