@@ -19,8 +19,10 @@ class ListSongController extends Controller {
 
   async index() {
     const ctx = this.ctx;
-    const query = { limit: toInt(ctx.query.limit), offset: toInt(ctx.query.offset) };
-    let list = await ctx.model.SongList.findAll(query)
+    // const keyword = ctx.query.keyword
+    // const keyword = ctx.query.keyword;
+    const query = { limit: toInt(ctx.query.limit), offset: toInt(ctx.query.offset),keyword: ctx.query.keyword  };
+    let list = await ctx.service.songList.show(query)
     ctx.body = { success: true, data: list};
   }
 
