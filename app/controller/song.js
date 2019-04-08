@@ -3,12 +3,14 @@ const toInt = require('../utils/toInt');
 const Controller = require('egg').Controller;
 
 const createRule = {
-   // accesstoken: 'string',
-    name: { type: 'string', required: true },
-    url: { type: 'string', required: true },
-    singer: { type: 'string'},
-    album: 'string',
-    description: 'string'
+  // accesstoken: 'string',
+
+  name: { type: "string", required: true },
+  url: { type: "string", required: true },
+  category: { type: "string" },
+  singer: { type: "string" },
+  album: "string",
+  description: "string"
 };
 
 

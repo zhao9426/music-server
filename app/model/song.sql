@@ -1,6 +1,7 @@
 CREATE TABLE `Song`(
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'primary key',
   `name` varchar(30) DEFAULT NULL COMMENT '歌曲名称',
+  `category` text(100) DEFAULT NULL COMMENT '歌曲类别',
   `time` int(20) DEFAULT 0 COMMENT '曲目时长',
   `url`  varchar(100) DEFAULT NULL COMMENT '歌曲文件地址',
   `singer` varchar(20) DEFAULT NULL COMMENT '歌手',
