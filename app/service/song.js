@@ -5,8 +5,19 @@ class SongService extends Service {
     super(ctx);
   }
 
-  async show(query){
+  async show(params) {
     const ctx = this.ctx;
+    const Op = this.app.Sequelize.Op;
+    let query = {};
+    if(params.category){
+      query = {
+        where: {
+          category: params.category
+        }
+      };
+    }
+    console.log(query, "KKK");
+
     let songs = await ctx.model.Song.findAll(query);
     return songs;
   }

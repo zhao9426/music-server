@@ -11,7 +11,8 @@ module.exports = (app) => {
   router.get("/song-list", controller.home.songList);
   router.get("/new-songs", controller.home.newSongs);
   router.get("/singers", controller.home.singers);
-  router.get("/rank", controller.home.rank)
+  router.get("/category", controller.home.category);
+  router.get("/rank", controller.home.rank);
   router.get("/my/song-list", controller.my.songList);
   router.get("/my/collect-song-list", controller.my.collectSongList);
   router.get("/my/like-song", controller.my.likeSong);
