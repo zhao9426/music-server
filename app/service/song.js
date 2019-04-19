@@ -16,7 +16,6 @@ class SongService extends Service {
         }
       };
     }
-    console.log(query, "KKK");
 
     let songs = await ctx.model.Song.findAll(query);
     return songs;

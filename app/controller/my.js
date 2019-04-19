@@ -8,7 +8,19 @@ class MyController extends Controller {
     const ctx = this.ctx;
     ctx.body = {
       success: true,
-      data: ["我的歌单"]
+      data: [{
+          title: '不可以',
+          description: 'kkakkk',
+          count: '35首',
+          creater: '艾菲'
+        },
+        {
+          title: '不哭',
+          count: '34首',
+          description: 'kkakkk',
+          creater: '艾菲jjk'
+        }
+      ]
     };
   }
   // 我收藏的歌单
