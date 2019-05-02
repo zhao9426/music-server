@@ -2,6 +2,7 @@
 
 const Controller = require('egg').Controller;
 const toInt = require("../utils/toInt");
+const uploadClient = require("../utils/upload");
 
 class HomeController extends Controller {
   async index() {
@@ -82,6 +83,54 @@ class HomeController extends Controller {
       token: ctx.csrf
     };
   }
+
+  async upload(){
+    const ctx = this.ctx;
+    const { files } = ctx.request;
+    let urls = [];
+    for (let index = 0; index < files.length; index++) {
+      let file = files[index];
+      let bucket = '';
+      // console.log('files :', file);
+      switch (file.mime) {
+        case 'video/mp4':
+          bucket = "music";
+          break;
+        case 'image/png':
+          bucket = "image";
+          break;
+        default:
+          bucket = "test";
+          break;
+      }
+     let res = await uploadClient.put(`${bucket}/${file.filename}`, file.filepath);
+     urls.push({ name: res.name, url: res.url }); 
+    }
+   
+    this.ctx.body = {
+      data: {
+        urls
+      }
+    }     
+  }
+  // 获取某个歌单下的歌曲
+  async showSongs(){
+    const ctx = this.ctx;
+    // 这里的id是歌单的id
+    console.log(ctx.query.id);
+
+    let songListDetail = await ctx.service.songList.showSongs(toInt(ctx.query.id));
+    
+    if(songListDetail){
+      ctx.status = 200;
+      ctx.body = { success: true, data: songListDetail }
+    } else {
+      ctx.status = 404;
+      ctx.body = { success: false, data: null}
+    }
+  }
+
 }
+
 
 module.exports = HomeController;

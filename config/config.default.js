@@ -44,5 +44,9 @@ module.exports = appInfo => {
     },
   };
 
+  config.multipart = {
+    mode: 'file'
+  }
+
   return config;
 };
