@@ -38,9 +38,7 @@
 |:----:|:----:|:----:|
 | id | string | 评论id |
 | type | string | 评论类型 |
-| name | string | 姓名 | 
-| nick | string | 昵称 |
-| avatar | string | 头像 |
+| user_id| int | 评论用户id |
 | content | string | 评论内容 |
-带的回复评论如何设计？
+
 
