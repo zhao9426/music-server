@@ -8,24 +8,9 @@ module.exports = app => {
     name: STRING(30),
     pwd: STRING(20),
     role: INTEGER,
+    avatar: STRING,
     created_at: DATE,
     updated_at: DATE,
   });
-
-  User.findByNameAndPwd = async (name, pwd) => {
-      return await User.findOne({
-          where: {
-              name,
-              pwd
-          }
-      }).then((user) => {  
-          if(user){
-              return { name: user.dataValues.name };
-          } else {
-              throw new Error("用户名或密码错误！");
-          }
-      })
-  }
-
   return User;
 };

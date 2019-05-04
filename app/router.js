@@ -19,6 +19,7 @@ module.exports = (app) => {
   router.get("/my/collect-song-list", controller.my.collectSongList);
   router.get("/my/like-song", controller.my.likeSong);
   router.get("/my/like-singer", controller.my.likeSinger);
+  router.resources('comment', '/api/comments', controller.comment);
   router.resources('users', '/api/users', controller.user);
   router.resources('song-list', '/api/song-list', controller.listSong);
   router.resources('song', '/api/song', controller.song);

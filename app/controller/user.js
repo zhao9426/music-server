@@ -5,7 +5,9 @@ const toInt = require("../utils/toInt");
 
 const createRule = {
   name: { type: "string", required: true },
-  pwd: { type: "string", required: true }
+  pwd: { type: "string", required: true },
+  role: { type: "number", required: false },
+  avatar: { type: "string", required: false }
 };
 
 class UserController extends Controller {
@@ -21,20 +23,23 @@ class UserController extends Controller {
   async login() {
     const ctx = this.ctx;
     try {
-      const user = await ctx.model.User.findByNameAndPwd(
-        ctx.request.body.name,
-        ctx.request.body.pwd
-      );
+      let { name, pwd } = ctx.request.body
+      let data = { name, pwd}
+      const user = await ctx.service.user.login(data);
       if (user && user.name == ctx.request.body.name) {
         ctx.status = 200;
-        ctx.body = { ...user, login: true };
-      } else {
-        throw new Error("用户名或密码错误！");
-      }
+        ctx.body = { 
+          data: user, 
+          login: true,
+          success: true
+        };
+      } 
     } catch (e) {
       ctx.status = 404;
       ctx.body = {
         login: false,
+        data: null,
+        success: false,
         message: e.message
       };
     }
@@ -48,10 +53,18 @@ class UserController extends Controller {
   // 创建用户
   async create() {
     const ctx = this.ctx;
-    ctx.validate(createRule, ctx.request.body);
-    const user = await ctx.service.user.create(ctx.request.body);
-    ctx.status = 201;
-    ctx.body = { success: true, data: user};
+    try {
+      ctx.validate(createRule, ctx.request.body);
+      const user = await ctx.service.user.create(ctx.request.body);
+      ctx.status = 201;
+      ctx.body = { success: true, data: user};
+    } catch (error) {
+      ctx.status = 422;
+      ctx.body = {
+        success: false,
+        message: error.message
+      };
+    }
   }
 
  // 修改用户信息

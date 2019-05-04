@@ -37,8 +37,12 @@
 | 字段 | 类型 | 说明 |
 |:----:|:----:|:----:|
 | id | string | 评论id |
-| type | string | 评论类型 |
-| user_id| int | 评论用户id |
+| topic_id | int | 评论主题id |
+| topic_type | int | 评论类型 歌单or歌曲 |
+| from_uid | int | 评论用户id |
+| from_uname | string | 评论用户名 | 
 | content | string | 评论内容 |
+| to_uid | int | 评论目标用户id |
+
 
 
