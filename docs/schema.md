@@ -44,5 +44,27 @@
 | content | string | 评论内容 |
 | to_uid | int | 评论目标用户id |
 
+# 歌单与用户关系表
+| 字段 | 类型 | 说明 |
+|:----:|:----:|:----:|
+| id | string | id |
+| song_list_id | int | 歌单id |
+| user_id | int | 用户id |
+| is_self_cread | bool | 是用户自己创建的或收藏的 |
+
+# 歌手与用户关系表(我关注的歌手)
+| 字段 | 类型 | 说明 |
+|:----:|:----:|:----:|
+| id | string | id |
+| singer_id | int | 歌手id |
+| user_id | int | 用户id |
+
+# 歌曲与用户关系表(我喜欢的歌曲)
+| 字段 | 类型 | 说明 |
+|:----:|:----:|:----:|
+| id | string | id |
+| song_id | int | 曲目id |
+| user_id | int | 用户id |
+
 
 

@@ -22,6 +22,8 @@ class CommentService extends Service {
    // 删除评论
    async delete(id, from_uid, topic_id, topic_type) {
     const ctx = this.ctx;
+    console.log(id, from_uid, topic_id, topic_type);
+    
     const comment = await ctx.model.Comment.findOne({
         where: {
             id, from_uid, topic_id, topic_type

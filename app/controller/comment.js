@@ -9,14 +9,13 @@ class CommentController extends Controller {
       limit: toInt(ctx.query.limit),
       offset: toInt(ctx.query.offset)
     };
-    console.log(ctx.query);
     
     const {
         topicId: topic_id,
         topicType: topic_type
     } = ctx.query;
     let where = { topic_id, topic_type };
-    let comments = await ctx.service.comment.show(query, where);
+    let comments = await ctx.service.comment.show(query , where);
     ctx.status = 200;
     ctx.body = { success: true, data: comments };
   }
