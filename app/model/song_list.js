@@ -5,6 +5,7 @@ module.exports = app => {
   const SongList = app.model.define("SongList", {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     name: STRING(30),
+    uid: INTEGER,
     author: STRING(10),
     poster: STRING(20),
     count: INTEGER,

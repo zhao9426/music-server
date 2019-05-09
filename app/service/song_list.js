@@ -40,6 +40,31 @@ class SongListService extends Service {
       songs: songs
     };
   }
+
+  // 收藏歌单
+  async collect(data){
+    let esl = await this.ctx.model.UserSongList.findAll({ where: {
+      ...data
+    }});
+    if(esl && esl.length){
+      throw new Error("此歌单已存在！");
+    } 
+    try {
+      const usl = await this.ctx.model.UserSongList.create({ ...data });
+      return usl;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async showCollectedSongList(query){
+    const Op = this.app.Sequelize.Op; 
+    const usl = await this.ctx.model.UserSongList.findAll({ where: { ...query } });
+    let sls = await this.ctx.model.SongList.findAll({ where: { id: {
+      [Op.in]:  usl.map(item => item.song_list_id)
+    }}});
+    return sls;
+  }
 }
 
 module.exports = SongListService;
