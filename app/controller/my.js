@@ -46,8 +46,8 @@ class MyController extends Controller {
   
   }
 
-  // 我收藏的歌单
-  async showCollectedSongList() {
+  // 我收藏的歌单或我的歌单
+  async showSongList() {
     try {
       const ctx = this.ctx;
       const query = ctx.request.query;

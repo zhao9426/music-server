@@ -15,9 +15,9 @@ module.exports = (app) => {
   router.get("/singers", controller.home.singers);
   router.get("/category", controller.home.category);
   router.get("/rank", controller.home.rank);
-  router.get("/my/song-list", controller.my.songList);
-  router.get("/my/csl", controller.my.showCollectedSongList);
-  router.post("/my/csl", controller.my.collectSongList)
+  // router.get("/my/song-list", controller.my.songList);
+  router.get("/my/csl", controller.my.showSongList); //我的歌单或我收藏的歌单
+  router.post("/my/csl", controller.my.collectSongList) //收藏歌单
   router.get("/my/like-song", controller.my.likeSong);
   router.get("/my/like-singer", controller.my.likeSinger);
   router.resources('comment', '/api/comments', controller.comment);
