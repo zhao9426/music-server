@@ -20,7 +20,7 @@ class CommentController extends Controller {
     ctx.body = { success: true, data: comments };
   }
 
-/*   async show(){
+  async show(){
     const ctx = this.ctx;
     const id = toInt(ctx.params.id); 
     let singer = await ctx.service.singer.showOne(id);
@@ -29,7 +29,7 @@ class CommentController extends Controller {
       success: true,
       data: singer
     };
-  } */
+  }
   // 发表评论
   async create() {
     const ctx = this.ctx;

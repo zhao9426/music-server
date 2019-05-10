@@ -5,12 +5,12 @@ module.exports = appInfo => {
     buffer: true,
   };
 
-  config.sequelize = {
-    dialect: 'mysql',
-    host: '47.100.53.48',
-    password: '794838927',
+  config.sequelize = {//orm的一个库，通过orm操作数据库
+    dialect: 'mysql',//指定什么类型的数据库
+    host: '47.100.53.48',//IP地址
+    password: '794838927',//密码
     port: 8888,
-    database: 'test',
+    database: 'test',//数据库名字
   /*   pool: {
       max: 5,
       min: 1,
@@ -19,9 +19,9 @@ module.exports = appInfo => {
     } */
   };
 
-  config.security = {
-    domainWhiteList: ["http://localhost:8888", "http://localhost:3000"],
-    csrf: {
+  config.security = {//security的一个库用来配置安全
+    domainWhiteList: ["http://localhost:8888", "http://localhost:3000"],//域名白名单
+    csrf: {//配置csrffa'g
       enable: false,
       credentials: true,
       useSession: true,
@@ -32,13 +32,13 @@ module.exports = appInfo => {
       headerName: "x-csrf-token"
     }
   };
-  config.keys = appInfo.name + "_1543889310000_3741";
+  config.keys = appInfo.name + "_1543889310000_3741";//配置app.key
 
-  config.middleware = [ 'errorHandler' ];
-  config.errorHandler = {
+  config.middleware = [ 'errorHandler' ];//配置中间键
+  config.errorHandler = {//配置错误处理中间键
     match: '/api',
   };
-  config.view = {
+  config.view = {//配置模板引擎
     mapping: {
       '.ejs': 'ejs',
     },

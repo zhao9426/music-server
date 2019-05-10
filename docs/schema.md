@@ -30,7 +30,7 @@
 |:----:|:----:|:----:|
 | id | string | 歌手id |
 | name | string | 姓名 | 
-| avatarUrl | string | 歌手头像 |
+| avatarUrl | string | 歌手头像 |
 | follower | number | 粉丝数 |
 
 # 评论comment Schema
