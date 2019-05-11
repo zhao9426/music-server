@@ -21,6 +21,38 @@ class SongService extends Service {
     return songs;
   }
 
+  async showLikeSong(params){
+    const Op = this.app.Sequelize.Op; 
+    let sids = await this.ctx.model.UserSong.findAll({ where: { ...params }})
+    let songs = await this.ctx.model.Song.findAll({ where: { id: {
+      [Op.in]:  sids.map(item => item.song_id)
+    }}});
+    return songs
+  }
+
+  async likeSong(data){
+    const Sq = this.app.Sequelize; 
+    const Op = this.app.Sequelize.Op; 
+    try {
+      let esl = await this.ctx.model.UserSong.findAll({ where: {
+        ...data
+      }});
+      if(esl && esl.length){
+        const us = await this.ctx.model.Song.decrement(`favorite`, { where: { id: data.song_id,  favorite: { [Op.gt]: 0 } }});
+        const usl = await this.ctx.model.UserSong.destroy({where: {...data }});
+        console.log(us);
+        console.log(usl);
+        return us;
+      } else {
+        const usl = await this.ctx.model.UserSong.create({ ...data });
+        const us = await this.ctx.model.Song.increment(`favorite`, { where: { id: data.song_id }});
+        return us;
+      } 
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async create(params) {
     const ctx = this.ctx;
     const song = await ctx.model.Song.create({ ...params });

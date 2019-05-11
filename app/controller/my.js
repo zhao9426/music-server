@@ -43,7 +43,6 @@ class MyController extends Controller {
         message: e.message
       };
     }
-  
   }
 
   // 我收藏的歌单或我的歌单
@@ -77,21 +76,87 @@ class MyController extends Controller {
   }
 
   // 我喜欢的歌曲
-  async likeSong() {
-    const ctx = this.ctx;
-    ctx.body = {
-      success: true,
-      data: ["我的喜欢的歌曲"]
-    };
+  async showLikeSong() {
+    try {
+      const ctx = this.ctx;
+      const query = ctx.request.query;
+      let { userId: user_id } = query;
+      let ls = await this.ctx.service.song.showLikeSong({ user_id });
+      ctx.body = {
+        success: true,
+        data: ls
+      };
+    } catch (e) {
+      this.ctx.status = 404;
+      this.ctx.body = {
+        login: false,
+        data: null,
+        success: false,
+        message: e.message
+      };
+    }
+  }
+
+  async likeSong(){
+    try {
+      const params = this.ctx.request.body;
+      let { songId: song_id, userId: user_id } = params;
+      let ls = await this.ctx.service.song.likeSong({song_id, user_id});
+      this.ctx.body = {
+        success: true,
+        data: ls
+      }
+    } catch (e) {
+      this.ctx.status = 404;
+      this.ctx.body = {
+        login: false,
+        data: null,
+        success: false,
+        message: e.message
+      };
+    }
+  }
+
+  async likeSinger(){
+    try {
+      const params = this.ctx.request.body;
+      let { singerId: singer_id, userId: user_id } = params;
+      let ls = await this.ctx.service.singer.likeSinger({ singer_id, user_id });
+      this.ctx.body = {
+        success: true,
+        data: ls
+      }
+    } catch (e) {
+      this.ctx.status = 404;
+      this.ctx.body = {
+        login: false,
+        data: null,
+        success: false,
+        message: e.message
+      };
+    }
   }
 
   // 我关注的歌手
-  async likeSinger() {
-    const ctx = this.ctx;
-    ctx.body = {
-      success: true,
-      data: ["我的关注的歌手"]
-    };
+  async showLikeSinger() {
+    try {
+      const ctx = this.ctx;
+      const query = ctx.request.query;
+      let { userId: user_id } = query;
+      let ls = await this.ctx.service.singer.showLikeSinger({ user_id });
+      ctx.body = {
+        success: true,
+        data: ls
+      };
+    } catch (e) {
+      this.ctx.status = 404;
+      this.ctx.body = {
+        login: false,
+        data: null,
+        success: false,
+        message: e.message
+      };
+    }
   }
 }
 

@@ -18,6 +18,36 @@ class SingerService extends Service {
     let singers = await ctx.model.Singer.findAll(query);
     return singers;
   }
+  async showLikeSinger(query){
+    const Op = this.app.Sequelize.Op; 
+    const ctx = this.ctx;
+    let sids = await ctx.model.UserSinger.findAll(query);
+    let singers = await this.ctx.model.Singer.findAll({ where: { id: {
+      [Op.in]:  sids.map(item => item.singer_id)
+    }}});
+    return singers
+  }
+
+  async likeSinger(data){
+    const Sq = this.app.Sequelize; 
+    const Op = this.app.Sequelize.Op; 
+    try {
+      let esl = await this.ctx.model.UserSinger.findAll({ where: {
+        ...data
+      }});
+      if(esl && esl.length){
+        const us = await this.ctx.model.Singer.decrement(`follower`, { where: { id: data.singer_id,  follower: { [Op.gt]: 0 } }});
+        const usl = await this.ctx.model.UserSinger.destroy({where: {...data }});
+        return us;
+      } else {
+        const usl = await this.ctx.model.UserSinger.create({ ...data });
+        const us = await this.ctx.model.Singer.increment(`follower`, { where: { id: data.singer_id }});
+        return us;
+      } 
+    } catch (error) {
+      throw error;
+    }
+  }
   // 查找一个歌手
   async showOne(id) {
     const ctx = this.ctx;

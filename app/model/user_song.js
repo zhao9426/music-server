@@ -3,9 +3,8 @@
 module.exports = app => {
   const { INTEGER, DATE } = app.Sequelize;
   const UserSong = app.model.define("UserSong", {
-    id: { type: INTEGER, primaryKey: true, autoIncrement: true },
-    song_id: INTEGER(11),
-    user_id: INTEGER(11),
+    song_id:  { type: INTEGER(11), primaryKey: true },
+    user_id: { type: INTEGER(11), primaryKey: true },
     created_at: DATE,
     updated_at: DATE
   });
