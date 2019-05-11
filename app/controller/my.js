@@ -76,6 +76,7 @@ class MyController extends Controller {
   }
 
   // 我喜欢的歌曲
+<<<<<<< Updated upstream
   async showLikeSong() {
     try {
       const ctx = this.ctx;
@@ -135,6 +136,21 @@ class MyController extends Controller {
         message: e.message
       };
     }
+=======
+  async likeSong() {
+    const ctx = this.ctx;
+    ctx.body = {
+      success: true,
+      data: [{
+      author: "King",
+      count: 1,
+      description: "wfw",
+      favorite: 3,
+      id: 31,
+      name: "朴树之歌",
+      poster: "http://pmusic.oss-cn-hangzhou.aliyuncs.com/image/b.jpeg"}]
+    };
+>>>>>>> Stashed changes
   }
 
   // 我关注的歌手
