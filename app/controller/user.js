@@ -14,10 +14,17 @@ class UserController extends Controller {
   async index() {
     const ctx = this.ctx;
     const query = {
-      limit: toInt(ctx.query.limit),
+      keyword: ctx.query.keyword,
+      limit: toInt(ctx.query.limit), 
       offset: toInt(ctx.query.offset)
     };
-    ctx.body = await ctx.model.User.findAll(query);
+    let users = await ctx.service.user.getAllUer(query);
+    ctx.status = 200;
+      ctx.body = { 
+        data: users, 
+        login: true,
+        success: true
+      };
   }
 
   async login() {

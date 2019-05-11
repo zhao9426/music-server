@@ -21,6 +21,26 @@ class SongService extends Service {
     return songs;
   }
 
+  async getAllSong(params){
+    try {
+      const Op = this.app.Sequelize.Op;
+      let query = {}
+      if(params.keyword){
+        query = {
+          where: { name: {
+            [Op.like]: `%${params.keyword}%`
+          }}
+        };
+      }else{
+        query = { ...params}
+      }
+      let songs = await this.ctx.model.Song.findAll(query);
+      return songs
+    } catch (error) {
+      
+    }
+  }
+
   async showLikeSong(params){
     const Op = this.app.Sequelize.Op; 
     let sids = await this.ctx.model.UserSong.findAll({ where: { ...params }})

@@ -16,12 +16,18 @@ const createRule = {
 class SongController extends Controller {
     async index() {
         const ctx = this.ctx;
-        const query = { limit: toInt(ctx.query.limit), offset: toInt(ctx.query.offset) };
-        ctx.body = await ctx.model.Song.findAll(query);
+        const query = {
+          keyword: ctx.query.keyword,
+          limit: toInt(ctx.query.limit),
+          offset: toInt(ctx.query.offset)
+        };
+        let songs = await ctx.service.song.getAllSong(query);
+        ctx.status = 200;
+        ctx.body = { success: true, data: songs };
     }
 
 
-    async show() {
+    async show(query) {
         const ctx = this.ctx;
         ctx.body = await ctx.model.Song.findById(toInt(ctx.params.id));
     }

@@ -13,10 +13,24 @@ class SingerService extends Service {
     return singer;
   }
   // 从数据库中查找歌手
-  async show(query) {
-    const ctx = this.ctx;
-    let singers = await ctx.model.Singer.findAll(query);
-    return singers;
+  async show(params) {
+    try {
+      const Op = this.app.Sequelize.Op;
+      let query = {}
+      if(params.keyword){
+        query = {
+          where: { name: {
+            [Op.like]: `%${params.keyword}%`
+          }}
+        };
+      }else{
+        query = { ...params}
+      }
+      let singers = await this.ctx.model.Singer.findAll(query);
+      return singers
+    } catch (error) {
+      
+    }
   }
   async showLikeSinger(query){
     const Op = this.app.Sequelize.Op; 

@@ -17,6 +17,26 @@ class UserService extends Service {
     return { user };
   }
 
+  async getAllUer(params){
+    try {
+      const Op = this.app.Sequelize.Op;
+      let query = {}
+      if(params.keyword){
+        query = {
+          where: { name: {
+            [Op.like]: `%${params.keyword}%`
+          }}
+        };
+      }else{
+        query = { ...params}
+      }
+      let users = await this.ctx.model.User.findAll(query);
+      return users
+    } catch (error) {
+      
+    }
+  }
+
   async login(params){
     const ctx = this.ctx;
     const user = await ctx.model.User.findOne({ where: params, attributes: ["id","name","role", "avatar"]});

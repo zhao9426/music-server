@@ -9,6 +9,7 @@ class SingerController extends Controller {
   async index() {
     const ctx = this.ctx;
     const query = {
+      keyword: ctx.query.keyword,
       limit: toInt(ctx.query.limit),
       offset: toInt(ctx.query.offset)
     };
@@ -16,6 +17,7 @@ class SingerController extends Controller {
     ctx.status = 200;
     ctx.body = { success: true, data: singers };
   }
+  
   async show(){
     const ctx = this.ctx;
     const id = toInt(ctx.params.id); 
