@@ -29,7 +29,12 @@ class SongController extends Controller {
 
     async show(query) {
         const ctx = this.ctx;
-        ctx.body = await ctx.model.Song.findById(toInt(ctx.params.id));
+        let song = await ctx.service.song.getSong(toInt(ctx.params.id));
+        ctx.status = 201;
+        ctx.body = {
+            success: true,
+            data: song
+        }
     }
 
     async create() {

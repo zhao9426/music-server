@@ -21,6 +21,11 @@ class SongService extends Service {
     return songs;
   }
 
+  async getSong(songId){
+    let song = await this.ctx.model.Song.findByPk(songId);
+    return song;
+  }
+
   async getAllSong(params){
     try {
       const Op = this.app.Sequelize.Op;
