@@ -93,9 +93,10 @@ class UserController extends Controller {
 
     if (errors) {
       ctx.status = 400;
-      ctx.body = { success: false, data: null, message: errors };
+      ctx.body = { success: false, data: null, message: `${errors[0].field} ${errors[0].message}` };
       return;
     }
+
     let uUser = await user.update(data);
     ctx.status = 200;
     ctx.body = {success: true, data: uUser};
