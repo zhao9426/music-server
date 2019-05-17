@@ -57,8 +57,6 @@ class SongController extends Controller {
             return;
         }
         ctx.validate(createRule, ctx.request.body);
-        console.log(ctx.request.body);
-        
         const nSong = await song.update(ctx.request.body); 
         ctx.status = 200;
         ctx.body = {

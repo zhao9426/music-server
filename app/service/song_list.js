@@ -7,8 +7,8 @@ class SongListService extends Service {
 
   async show(params){
     const ctx = this.ctx;
-    const Op = this.app.Sequelize.Op;
-    let query = {}
+    const Op = this.app.Sequelize.Op;//可以执行数据库的逻辑操作
+    let query = {}//查询对象
     if(params.keyword){
       query = {
         where: { name: {
@@ -18,7 +18,7 @@ class SongListService extends Service {
     }else{
       query = { ...params}
     }
-    let list = await ctx.model.SongList.findAll(query);
+    let list = await ctx.model.SongList.findAll(query);//findAll()orm对象方法
     return list;
   }
 

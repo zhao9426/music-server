@@ -53,8 +53,6 @@ class MyController extends Controller {
       let { userId: user_id, isSelfCreat } = query;
       let sl = await this.ctx.service.songList.showCollectedSongList({ user_id });
       let rsl = [];
-      console.log(query);
-      
       if("true" == isSelfCreat){
       rsl = sl.filter(s => s.uid == user_id);
       } else {

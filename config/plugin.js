@@ -14,12 +14,12 @@ exports.ejs = {//配置模板引擎
     package: 'egg-mysql'
 } */
 
-exports.sequelize = {
+exports.sequelize = {//配置egg插件，通过它来链接数据库
   enable: true,
   package: 'egg-sequelize',
 };
 
-exports.validate = {//配置验证
+exports.validate = {//配置数据验证
   enable: true,
   package: 'egg-validate',
 };

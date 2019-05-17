@@ -7,7 +7,6 @@ class SongService extends Service {
 
   async show(params) {
     const ctx = this.ctx;
-    const Op = this.app.Sequelize.Op;
     let query = {};
     if(params.category){
       query = {

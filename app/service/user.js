@@ -39,6 +39,7 @@ class UserService extends Service {
 
   async login(params){
     const ctx = this.ctx;
+
     const user = await ctx.model.User.findOne({ where: params, attributes: ["id","name","role", "avatar"]});
     if(!user){
       throw new Error("用户名或密码错误！");

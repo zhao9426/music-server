@@ -61,7 +61,7 @@ class UserController extends Controller {
   async create() {
     const ctx = this.ctx;
     try {
-      ctx.validate(createRule, ctx.request.body);
+      ctx.validate(createRule, ctx.request.body);//表单验证
       const user = await ctx.service.user.create(ctx.request.body);
       ctx.status = 201;
       ctx.body = { success: true, data: user};

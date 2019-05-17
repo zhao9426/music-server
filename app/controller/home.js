@@ -12,7 +12,7 @@ class HomeController extends Controller {
   async songList() {
     const ctx = this.ctx;
     const query = {
-      limit: toInt(ctx.query.limit),
+      limit: toInt(ctx.query.limit),//查询参数
       offset: toInt(ctx.query.offset)
     };
     let list = await ctx.service.songList.show(query);
@@ -80,7 +80,7 @@ class HomeController extends Controller {
   async token() {
     const ctx = this.ctx;
     this.ctx.body = {
-      token: ctx.csrf
+      token: ctx.csrf//跨域校验
     };
   }
 
@@ -91,7 +91,6 @@ class HomeController extends Controller {
     for (let index = 0; index < files.length; index++) {
       let file = files[index];
       let bucket = '';
-      // console.log('files :', file);
       switch (file.mime) {
         case 'video/mp4':
           bucket = "music";

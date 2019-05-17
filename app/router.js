@@ -21,6 +21,14 @@ module.exports = (app) => {
   router.post("/my/like-song", controller.my.likeSong);
   router.get("/my/like-singer", controller.my.showLikeSinger);
   router.post("/my/like-singer", controller.my.likeSinger);
+  /* router.get("/api/comments", controller.comment.index);
+  router.get("/api/comments/new", controller.comment.new);
+  router.get("/api/comments/:id", controller.comment.show);
+  router.get("/api/comments/:id/edit",  controller.comment.edit);
+  router.post("/api/comments", controller.comment.create);
+  router.put("/api/comments:id",  controller.comment.update);
+  router.delete("/api/comments/:id",  controller.comment.destroy); */
+
   router.resources('comment', '/api/comments', controller.comment);
   router.resources('users', '/api/users', controller.user);
   router.resources('song-list', '/api/song-list', controller.listSong);
