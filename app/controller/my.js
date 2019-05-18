@@ -29,8 +29,6 @@ class MyController extends Controller {
     try {
       const params = this.ctx.request.body;
       let { songListId: song_list_id, userId: user_id } = params;
-      console.log(params);
-      
       let usl = await this.ctx.service.songList.collect({song_list_id, user_id});
       this.ctx.body = {
         success: true,
@@ -60,9 +58,6 @@ class MyController extends Controller {
       } else {
         rsl = sl.filter(s => s.uid != user_id);
       }
-      console.log(sl);
-      console.log(rsl);
-    
       ctx.body = {
         success: true,
         data: rsl
@@ -120,6 +115,14 @@ class MyController extends Controller {
     }
   }
 
+  destroyLikeSong() {
+    const params = this.ctx.request.body;
+    let { songId: song_id, userId: user_id } = params;
+    let song = await ctx.service.song.destroyLikeSong({song_id, user_id});
+    ctx.status = 201;
+    ctx.body = { data: song, success: true };
+  }
+  
   async likeSinger(){
     try {
       const params = this.ctx.request.body;

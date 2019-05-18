@@ -15,10 +15,11 @@ module.exports = (app) => {
   router.get("/singers", controller.home.singers);
   router.get("/category", controller.home.category);
   router.get("/rank", controller.home.rank);
-  router.get("/my/csl", controller.my.showSongList); //我的歌单或我收藏的歌单
-  router.post("/my/csl", controller.my.collectSongList) //收藏歌单
+  router.get("/my/csl", controller.my.showSongList); 
+  router.post("/my/csl", controller.my.collectSongList);
   router.get("/my/like-song", controller.my.showLikeSong);
   router.post("/my/like-song", controller.my.likeSong);
+  router.delete("/my/like-song/:id", controller.my.destroyLikeSong);
   router.get("/my/like-singer", controller.my.showLikeSinger);
   router.post("/my/like-singer", controller.my.likeSinger);
   /* router.get("/api/comments", controller.comment.index);
@@ -28,7 +29,6 @@ module.exports = (app) => {
   router.post("/api/comments", controller.comment.create);
   router.put("/api/comments:id",  controller.comment.update);
   router.delete("/api/comments/:id",  controller.comment.destroy); */
-
   router.resources('comment', '/api/comments', controller.comment);
   router.resources('users', '/api/users', controller.user);
   router.resources('song-list', '/api/song-list', controller.listSong);

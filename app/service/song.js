@@ -76,6 +76,21 @@ class SongService extends Service {
     }
   }
 
+   // 删除歌喜欢的歌曲
+   async destroyLikeSong(song_id, user_id) {
+    const ctx = this.ctx;
+    const song = await ctx.model.user_song.findOne({
+        where: {
+          song_id, user_id
+        }
+    });
+    if (song) {
+      return await song.destroy();
+    } else {
+      throw new Error("此歌曲不存在！");
+    }
+  }
+
   async create(params) {
     const ctx = this.ctx;
     const song = await ctx.model.Song.create({ ...params });
