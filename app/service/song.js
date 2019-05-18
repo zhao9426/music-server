@@ -7,16 +7,17 @@ class SongService extends Service {
 
   async show(params) {
     const ctx = this.ctx;
-    let query = {};
-    if(params.category){
-      query = {
-        where: {
-          category: params.category
-        }
-      };
+    let { category, limit, offset } = params;
+    let query = {limit, offset};
+    let where = { }
+    if(category){
+      where = { category }
     }
-
-    let songs = await ctx.model.Song.findAll(query);
+    
+    let songs = await ctx.model.Song.findAll({
+      ...query,
+      where
+    });
     return songs;
   }
 
@@ -64,8 +65,6 @@ class SongService extends Service {
       if(esl && esl.length){
         const us = await this.ctx.model.Song.decrement(`favorite`, { where: { id: data.song_id,  favorite: { [Op.gt]: 0 } }});
         const usl = await this.ctx.model.UserSong.destroy({where: {...data }});
-        console.log(us);
-        console.log(usl);
         return us;
       } else {
         const usl = await this.ctx.model.UserSong.create({ ...data });

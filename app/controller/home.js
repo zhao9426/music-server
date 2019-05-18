@@ -51,7 +51,7 @@ class HomeController extends Controller {
   async rank() {
     const ctx = this.ctx;
     const query = {
-      category: ctx.query.category,
+      category: ctx.query.category,//category
       limit: toInt(ctx.query.limit),
       offset: toInt(ctx.query.offset)
     };

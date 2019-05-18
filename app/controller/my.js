@@ -29,6 +29,8 @@ class MyController extends Controller {
     try {
       const params = this.ctx.request.body;
       let { songListId: song_list_id, userId: user_id } = params;
+      console.log(params);
+      
       let usl = await this.ctx.service.songList.collect({song_list_id, user_id});
       this.ctx.body = {
         success: true,
@@ -54,10 +56,13 @@ class MyController extends Controller {
       let sl = await this.ctx.service.songList.showCollectedSongList({ user_id });
       let rsl = [];
       if("true" == isSelfCreat){
-      rsl = sl.filter(s => s.uid == user_id);
+        rsl = sl.filter(s => s.uid == user_id);
       } else {
         rsl = sl.filter(s => s.uid != user_id);
       }
+      console.log(sl);
+      console.log(rsl);
+    
       ctx.body = {
         success: true,
         data: rsl
