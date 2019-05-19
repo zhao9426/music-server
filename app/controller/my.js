@@ -115,7 +115,7 @@ class MyController extends Controller {
     }
   }
 
-  destroyLikeSong() {
+  async destroyLikeSong() {
     const params = this.ctx.request.body;
     let { songId: song_id, userId: user_id } = params;
     let song = await ctx.service.song.destroyLikeSong({song_id, user_id});
