@@ -57,7 +57,7 @@ class ListSongController extends Controller {
     const data = ctx.request.body;
     const errors = this.app.validator.validate({name: "string?", author: "string?", description: "string?"}, data)
     if(errors){
-      ctx.body = { success: false, data: null, message: errors };
+      ctx.body = { success: false, data: null, message: `${errors[0].field} ${errors[0].message}` };
       return;
     }
     let usong = await song.update(data);
